@@ -1,9 +1,21 @@
 import TailSelect from "../UI/TailSelect"
 import { useEffect, useState, useRef } from "react"
+import { useNavigate } from "react-router-dom"
+import { useAtom } from "jotai"
+import { logAtom } from "../atoms/IsLogin"
 
 import scode from "../db/scode.json"
 import sarea from "../db/sarea.json"
 export default function Subway() {
+  const [login] = useAtom(logAtom);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!login) {
+      navigate("/");
+    }
+  }, [login, navigate]);
+
     const [tags, setTags] = useState([]);
     const [data, setData] = useState([]);
     const [code, setCode] = useState();

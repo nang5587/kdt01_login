@@ -1,20 +1,21 @@
 
 import TailButton from "../UI/TailButton"
-import { useRef, useState } from "react"
 import { useAtom } from "jotai";
+import { useRef } from "react";
 import { logAtom } from "../atoms/IsLogin";
 import { useNavigate } from "react-router-dom";
 export default function Login() {
-    const [log, setLog] = useAtom(logAtom);
+    const [login, setLogin] = useAtom(logAtom);
     const navigate = useNavigate();
     const emailref = useRef();
     const passref = useRef();
-    const handleSubmit = () => {
-        localStorage.setItem('logEmail', emailref.current.value);
-        localStorage.setItem('logPass', passref.current.value);
-        setLog(true);
-    };
 
+  const handleSubmit = () => {
+    localStorage.setItem('logEmail', emailref.current.value);
+        localStorage.setItem('logPass', passref.current.value);
+    setLogin(true);
+    navigate("/subway");
+  };
 
   return (
     <>

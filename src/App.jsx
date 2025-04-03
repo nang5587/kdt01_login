@@ -6,11 +6,13 @@ import Home from "./components/Home"
 import { logAtom } from "./atoms/IsLogin"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { useAtom } from "jotai"
 function App() {
-  const navigate = useNavigate();
-  useEffect(()=>{
-    navigate("/home?item=log");
-  }, [logAtom]);
+  const [login] = useAtom(logAtom);
+  // const navigate = useNavigate();
+  // useEffect(()=>{
+  //   navigate("/home?item=log");
+  // }, [logAtom]);
 
   return (
     <BrowserRouter>
@@ -22,9 +24,9 @@ function App() {
         <main className="w-full h-full flex flex-col justify-start items-center my-10">
           {/* <Subway /> */}
           <Routes>
-            <Route path="/" element={<Login />}/>
-            <Route path="/home" element={<Home />}/>
-            <Route path="/subway" element={<Subway />}/>
+            <Route path="/" element={<Home />}/>
+            <Route path="/login" element={<Login />}/>
+            {login && <Route path="/subway" element={<Subway />} />}
           </Routes>
         </main>
         <footer className="w-full h-20 flex justify-center items-center">

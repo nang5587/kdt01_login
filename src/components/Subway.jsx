@@ -7,42 +7,62 @@ import { logAtom } from "../atoms/IsLogin"
 import scode from "../db/scode.json"
 import sarea from "../db/sarea.json"
 export default function Subway() {
-  const [login] = useAtom(logAtom);
-  const navigate = useNavigate();
+    const [login] = useAtom(logAtom);
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!login) {
-      navigate("/");
-    }
-  }, [login, navigate]);
+    useEffect(() => {
+      if (!login) {
+        navigate("/");
+      }
+    }, [login, navigate]);
 
     const [tags, setTags] = useState([]);
     const [data, setData] = useState([]);
     const [code, setCode] = useState();
     const refSel = useRef();
+
     const selList = sarea.map(
         item => item["측정소"]
       );
-    console.log("selList+code", selList);
+      const getYesterday = () => {
+        let dt = new Date();
+        dt.setDate(dt.getDate() - 1);
+    
+        //년도
+        let year = String(dt.getFullYear());
+        year = year.slice(2);
+        //월
+        let month = String(dt.getMonth() + 1).padStart(2, '0');
+        // month = month < 10 ? '0' + month : month ;
+    
+        //일 
+        let day = String(dt.getDate()).padStart(2, '0');
+        
+        return (year +  month + day);
+      }
+     
 
 
     const getFetchData = async () => {
         const apiKey = import.meta.env.VITE_APP_API_KEY;
+
         let url = "https://apis.data.go.kr/6260000/IndoorAirQuality/getIndoorAirQualityByStation?serviceKey=";
-        url = `${url}${apiKey}&pageNo=1&numOfRows=11&resultType=json&controlnumber=250403&areaIndex=${code}`
+        url = `${url}${apiKey}&pageNo=1&numOfRows=104&resultType=json&controlnumber=${getYesterday()}10`
         const resp = await fetch(url);
         const data = await resp.json();
-
+      
         let subwayData = data.response.body.items.item;
         setData(subwayData);
         console.log(url);
+        console.log("subwayData", subwayData);
     }
 
     const handleChange = () => {
         const selected = refSel.current.value;
         let codes = sarea.map(item => 
-                              item["코드"]);
-        setCode('201193');
+                              `${item["측정소"]},${item["코드"]}`);
+        let test = codes.filter(item => item.split(',')[0] == selected);
+        setCode(test[0].split(',')[1]);
         console.log(selected);
         console.log(codes);
         let data2 = data.filter(item => item.areaIndex == code);
@@ -94,9 +114,9 @@ export default function Subway() {
     }, [data]);
 
   return (
-    <div className="w-11/12">
+    <div className="w-9/10">
         <div className="w-full flex justify-between items-center">
-            <h2 className="text-2xl text-gray-600 font-bold my-10 w-1/2">측정소 선택</h2>
+            <h2 className="text-2xl text-gray-700 font-bold my-10 w-1/2">측정소 선택</h2>
             <div className="w-1/2"><TailSelect 
                 id="sel"
                 refSel={refSel}
@@ -105,7 +125,7 @@ export default function Subway() {
             />
             </div>
         </div>
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-400">
         <thead className="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th className="font-bold px-6 py-3 text-center w-1/9">

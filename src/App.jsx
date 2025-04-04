@@ -1,3 +1,4 @@
+import "../src/App.css"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from "./components/Login"
 import Nav from "./components/Nav"
@@ -11,19 +12,19 @@ function App() {
   return (
     <BrowserRouter>
       <div className="w-full xl:w-9/10 h-screen mx-auto flex flex-col">
-        <header className="w-full min-h-30 bg-amber-50 flex justify-center items-center
+        <header id="headcolor" className="w-full min-h-30 flex justify-center items-center
                           px-10">
           <Nav />
         </header>
-        <main className="w-full h-full flex flex-col justify-start items-center my-10">
+        <main id="maincolor" className="w-full h-full flex flex-col justify-start items-center">
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/login" element={<Login />}/>
             {login && <Route path="/subway" element={<Subway />} />}
           </Routes>
         </main>
-        <footer className="w-full h-20 flex justify-center items-center">
-          <h2 className="text-md">Kdt01 react login form</h2>
+        <footer id="footcolor" className="w-full h-20  flex justify-center items-center">
+          <h2 className="text-md text-gray-700">Kdt01 react login form</h2>
         </footer>
       </div>
       </BrowserRouter>

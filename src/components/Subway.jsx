@@ -21,8 +21,9 @@ export default function Subway() {
     const [code, setCode] = useState();
     const refSel = useRef();
     const selList = sarea.map(
-        item => item["측정소"]);
-    console.log(selList);
+        item => item["측정소"]
+      );
+    console.log("selList+code", selList);
 
 
     const getFetchData = async () => {
@@ -39,7 +40,8 @@ export default function Subway() {
 
     const handleChange = () => {
         const selected = refSel.current.value;
-        let codes = sarea.map(item => item["코드"]);
+        let codes = sarea.map(item => 
+                              item["코드"]);
         setCode('201193');
         console.log(selected);
         console.log(codes);
@@ -137,7 +139,6 @@ export default function Subway() {
         </thead>
         <tbody>
           {tags}
-    
         </tbody>
       </table>    
     </div>

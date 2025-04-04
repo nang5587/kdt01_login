@@ -12,14 +12,14 @@ export default function Login() {
 
   const handleSubmit = () => {
     localStorage.setItem('logEmail', emailref.current.value);
-        localStorage.setItem('logPass', passref.current.value);
+    localStorage.setItem('logPass', passref.current.value);
     setLogin(true);
-    navigate("/subway");
+    navigate("/");
   };
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-5 lg:px-8">
+      <div className="flex w-full flex-1 flex-col justify-start px-6 py-5 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           {/* 이미지 */}
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">

@@ -4,15 +4,9 @@ import Nav from "./components/Nav"
 import Subway from "./components/Subway"
 import Home from "./components/Home"
 import { logAtom } from "./atoms/IsLogin"
-import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
 import { useAtom } from "jotai"
 function App() {
   const [login] = useAtom(logAtom);
-  // const navigate = useNavigate();
-  // useEffect(()=>{
-  //   navigate("/home?item=log");
-  // }, [logAtom]);
 
   return (
     <BrowserRouter>
@@ -22,7 +16,6 @@ function App() {
           <Nav />
         </header>
         <main className="w-full h-full flex flex-col justify-start items-center my-10">
-          {/* <Subway /> */}
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/login" element={<Login />}/>

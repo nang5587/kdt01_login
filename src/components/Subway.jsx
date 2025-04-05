@@ -72,7 +72,7 @@ export default function Subway() {
                            hover:bg-gray-50 dark:hover:bg-gray-600 hover:cursor-pointer hover:font-bold"
                            >
 
-                            <td className="px-6 p-4 text-center font-medium text-gray-900">
+                            <td className="px-6 p-4 text-center">
                             {item["pm10"]}
                             </td>
                             <td className=" px-6 py-4 text-center ">
@@ -116,8 +116,9 @@ export default function Subway() {
   return (
     <div className="w-9/10">
         <div className="w-full flex justify-between items-center">
-            <h2 className="text-2xl text-gray-700 font-bold my-10 w-1/2">측정소 선택</h2>
-            <div className="w-1/2"><TailSelect 
+            <h2 className="text-lg text-gray-700 font-bold my-10 px-5 py-2 rounded-lg bg-white
+                          border-1 border-gray-100 shadow-md shadow-gray-300">측정소 선택</h2>
+            <div className="w-1/3"><TailSelect 
                 id="sel"
                 refSel={refSel}
                 items={selList}
@@ -129,31 +130,31 @@ export default function Subway() {
         <thead className="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th className="font-bold px-6 py-3 text-center w-1/9">
-            {scode.pm10.name}({scode.pm10.unit})
+            {scode.pm10.name}<br/>({scode.pm10.unit})
             </th>
             <th className="min-w-auto px-6 py-3 text-center w-1/9">
-            {scode.co2.name}({scode.co2.unit})
+            {scode.co2.name}<br/>({scode.co2.unit})
             </th>
             <th className="min-w-auto px-6 py-3 text-center w-1/9">
-            {scode.co.name}({scode.co.unit})
+            {scode.co.name}<br/>({scode.co.unit})
             </th>
             <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.no2.name}({scode.no2.unit})
+            {scode.no2.name}<br/>({scode.no2.unit})
             </th>
             <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.no.name}({scode.no.unit})
+            {scode.no.name}<br/>({scode.no.unit})
             </th>
             <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.nox.name}({scode.nox.unit})
+            {scode.nox.name}<br/>({scode.nox.unit})
             </th>
             <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.o3.name}({scode.o3.unit})
+            {scode.o3.name}<br/>({scode.o3.unit})
             </th>
             <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.pm25.name}({scode.pm25.unit})
+            {scode.pm25.name}<br/>({scode.pm25.unit})
             </th>
             <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.fad.name}({scode.fad.unit})
+            {scode.fad.name}<br/>({scode.fad.unit})
             </th>
           </tr>
         </thead>

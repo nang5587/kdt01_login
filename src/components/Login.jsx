@@ -11,7 +11,19 @@ export default function Login() {
     const emailref = useRef();
     const passref = useRef();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(emailref.current.value == ""){
+      alert("이메일을 입력해주세요.");
+      emailref.current.focus();
+      return;
+    }
+    if(passref.current.value == ""){
+      alert("패스워드를 입력해주세요.");
+      passref.current.focus();
+      return;
+    }
+
     localStorage.setItem('logEmail', emailref.current.value);
     localStorage.setItem('logPass', passref.current.value);
     setLogin(true);
@@ -26,7 +38,7 @@ export default function Login() {
         </div>
 
         <div className="mt-20 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm/6 font-bold text-gray-700">
                 이메일
@@ -68,7 +80,7 @@ export default function Login() {
             <div>
                 <TailButton 
                     caption="Login"
-                    color="blue"
+                    color="lblue"
                     onClick={handleSubmit}
                 />
             </div>

@@ -31,14 +31,15 @@ export default function Login() {
   };
 
   return (
-    <>
-      <div className="flex w-full flex-1 justify-start px-6 py-5 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-xl mt-10">
-          <img src={train} className="w-full"/>
+
+      <div className="flex w-full flex-1 justify-center px-6 py-5 lg:px-8 mt-20">
+        <div className="w-1/2 h-auto mt-10 flex justify-center items-center">
+          <img src={train} id="rotated" className="w-4/5"/>
         </div>
 
-        <div className="mt-20 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+        <div className=" w-1/2 flex justify-center items-center">
+          <form className="w-2/3 space-y-6 bg-white border-1 border-gray-200 shadow-md shadow-gray-300 rounded-2xl px-10 py-20" 
+                onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm/6 font-bold text-gray-700">
                 이메일
@@ -87,6 +88,6 @@ export default function Login() {
           </form>
         </div>
       </div>
-    </>
+
   )
 }

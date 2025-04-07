@@ -35,3 +35,6 @@
 #navcenter{
     font-family: 'KakaoSmallSans-Bold';
 }
+#rotated{
+    transform: rotate(-5deg);
+}

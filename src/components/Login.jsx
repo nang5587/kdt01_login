@@ -32,14 +32,15 @@ export default function Login() {
 
   return (
 
-      <div className="flex w-full flex-1 justify-center px-6 py-5 lg:px-8 mt-20">
+      <div className="flex w-full justify-start px-6 py-5 lg:px-8 mt-30">
         <div className="w-1/2 h-auto mt-10 flex justify-center items-center">
-          <img src={train} id="rotated" className="w-4/5"/>
+          <img src={train} id="rotated" className="w-4/5 ml-20"/>
         </div>
 
-        <div className=" w-1/2 flex justify-center items-center">
-          <form className="w-2/3 space-y-6 bg-white border-1 border-gray-200 shadow-md shadow-gray-300 rounded-2xl px-10 py-20" 
+        <div className=" w-1/2 h-auto flex justify-center items-center">
+          <form className="w-1/2 space-y-6 bg-white border-1 border-gray-200 shadow-md shadow-gray-300 rounded-2xl px-10 pt-10 pb-20 animate-fade-up" 
                 onSubmit={handleSubmit}>
+            <h2 className="text-2xl font-bold text-center mt-5 mb-10 text-gray-700">Login</h2>
             <div>
               <label htmlFor="email" className="block text-sm/6 font-bold text-gray-700">
                 이메일

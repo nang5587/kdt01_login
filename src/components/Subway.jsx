@@ -17,6 +17,7 @@ export default function Subway() {
     }, [login, navigate]);
 
     const [tags, setTags] = useState([]);
+    const [tags1, setTags1] = useState([]);
     const [data, setData] = useState([]);
     const [code, setCode] = useState();
     const refSel = useRef();
@@ -69,37 +70,36 @@ export default function Subway() {
         console.log("data2",data2);
         const tm = data2.map(item => 
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200
-                           hover:bg-gray-50 dark:hover:bg-gray-600 hover:cursor-pointer hover:font-bold"
-                           >
+                           hover:bg-gray-50 dark:hover:bg-gray-600 hover:cursor-pointer hover:font-bold" >
 
-                            <td className="px-6 p-4 text-center">
-                            {item["pm10"]}
-                            </td>
-                            <td className=" px-6 py-4 text-center ">
-                            {item["co2"]}
-                            </td>
-                            <td className=" px-6 py-4 text-center">
-                            {item["co"]}
-                            </td>
-                            <td className=" px-6 py-4 text-center">
-                            {item["no2"]}
-                            </td>
-                            <td className=" px-6 py-4 text-center">
-                            {item["no"]}
-                            </td>
-                            <td className=" px-6 py-4 text-center">
-                            {item["nox"]}
-                            </td>
-                            <td className=" px-6 py-4 text-center">
-                            {item["o3"]}
-                            </td>
-                            <td className=" px-6 py-4 text-center">
-                            {item["pm25"]}
-                            </td>
-                            <td className=" px-6 py-4 text-center">
-                            {item["fad"]}
-                            </td>
-                            </tr>);
+              <td className="px-6 p-4 text-center">
+              {item["pm10"]}
+              </td>
+              <td className=" px-6 py-4 text-center ">
+              {item["co2"]}
+              </td>
+              <td className=" px-6 py-4 text-center">
+              {item["co"]}
+              </td>
+              <td className=" px-6 py-4 text-center">
+              {item["no2"]}
+              </td>
+              <td className=" px-6 py-4 text-center">
+              {item["no"]}
+              </td>
+              <td className=" px-6 py-4 text-center">
+              {item["nox"]}
+              </td>
+              <td className=" px-6 py-4 text-center">
+              {item["o3"]}
+              </td>
+              <td className=" px-6 py-4 text-center">
+              {item["pm25"]}
+              </td>
+              <td className=" px-6 py-4 text-center">
+              {item["fad"]}
+              </td>
+              </tr>);
         setTags(tm);
     }
 
@@ -108,9 +108,16 @@ export default function Subway() {
     }, []);
 
     useEffect(()=>{
-        if(!data) return;
+      if(!data) return;
+      const itemKeys = Object.keys(scode);
 
-        handleChange();
+      let tm = itemKeys.map(item => 
+            <th key={item} className="font-bold px-6 py-3 text-center w-1/9">
+            {scode[item]["name"]}<br/>({scode[item]["unit"]})
+            </th>
+      )
+      setTags1(tm)
+      handleChange();
     }, [data]);
 
   return (
@@ -126,36 +133,10 @@ export default function Subway() {
             />
             </div>
         </div>
-        <table className="w-full text-sm text-left rtl:text-right text-gray-700 dark:text-gray-400">
-        <thead className="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-700">
+        <thead className="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700">
           <tr>
-            <th className="font-bold px-6 py-3 text-center w-1/9">
-            {scode.pm10.name}<br/>({scode.pm10.unit})
-            </th>
-            <th className="min-w-auto px-6 py-3 text-center w-1/9">
-            {scode.co2.name}<br/>({scode.co2.unit})
-            </th>
-            <th className="min-w-auto px-6 py-3 text-center w-1/9">
-            {scode.co.name}<br/>({scode.co.unit})
-            </th>
-            <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.no2.name}<br/>({scode.no2.unit})
-            </th>
-            <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.no.name}<br/>({scode.no.unit})
-            </th>
-            <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.nox.name}<br/>({scode.nox.unit})
-            </th>
-            <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.o3.name}<br/>({scode.o3.unit})
-            </th>
-            <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.pm25.name}<br/>({scode.pm25.unit})
-            </th>
-            <th className="min-w-auto  px-6 py-3 text-center w-1/9">
-            {scode.fad.name}<br/>({scode.fad.unit})
-            </th>
+            {tags1}
           </tr>
         </thead>
         <tbody>

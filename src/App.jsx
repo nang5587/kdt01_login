@@ -12,10 +12,8 @@ function App() {
 // style={{ backgroundImage: `url(${bg})` }}
   return (
     <BrowserRouter>
-      <div className="w-full xl:w-9/10 h-screen mx-auto flex flex-col bg-cover bg-center bg-no-repeat"
-      >
-        <header id="headcolor" className="w-full min-h-30 flex justify-center items-center
-                          px-10">
+      <div className="w-full xl:w-9/10 h-screen mx-auto flex flex-col bg-cover bg-center bg-no-repeat">
+        <header id="headcolor" className="w-full min-h-30 flex justify-center items-center px-10">
           <Nav />
         </header>
         <main id="maincolor" className="w-full h-full flex flex-col justify-start items-center">

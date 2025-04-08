@@ -24,7 +24,7 @@ export default function Nav() {
     
           {login &&
             <Link to="/subway" id="navcenter"
-              className="inline-flex items-center justify-center text-lg font-bold text-gray-700
+              className="inline-flex items-center justify-center text-xl text-gray-700
                 mr-5 px-5 py-1 w-36 text-center hover:underline underline-offset-4">
               <LiaSubwaySolid className="w-8"/>지하철
             </Link>}

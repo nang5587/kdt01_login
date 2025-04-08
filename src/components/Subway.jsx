@@ -60,13 +60,14 @@ export default function Subway() {
 
     const handleChange = () => {
         const selected = refSel.current.value;
-        let codes = sarea.map(item => 
-                              `${item["측정소"]},${item["코드"]}`);
-        let test = codes.filter(item => item.split(',')[0] == selected);
-        setCode(test[0].split(',')[1]);
-        console.log(selected);
-        console.log(codes);
-        let data2 = data.filter(item => item.areaIndex == code);
+
+        const codes = sarea.map(item => `${item["측정소"]},${item["코드"]}`);
+        const test = codes.find(item => item.split(',')[0] === selected) || "";
+        const selectedCode = test.split(',')[1] || "";
+      
+        setCode(selectedCode);
+      
+        const data2 = data.filter(item => item.areaIndex === selectedCode);
         console.log("data2",data2);
         const tm = data2.map(item => 
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200

@@ -18,8 +18,8 @@ export default function Nav() {
   };
 
   return (
-    <div className="w-full flex justify-between items-center mx-10 text-gray-700">
-        <h2 id="title" className="text-3xl text-gray-800 font-bold">BUSAN <br/> <span className="text-2xl">지하철 실내공기정보</span></h2>
+    <div className="w-full flex justify-between items-center text-gray-700">
+        <h2 id="title" className="text-3xl text-gray-800 font-bold ml-10">BUSAN <br/> <span className="text-2xl">지하철 실내공기정보</span></h2>
         <div className="flex justify-center items-center">
     
           {login &&
@@ -40,7 +40,7 @@ export default function Nav() {
             <>
             <Link to="/login"
               onClick={handlelogout}
-              className="inline-flex items-center justify-center w-8 mr-5 text-gray-700">
+              className="inline-flex items-center justify-center w-8 text-gray-700">
                 <RiLogoutCircleLine className="w-full h-full"/>
             </Link>
             </>

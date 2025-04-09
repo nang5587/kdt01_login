@@ -6,6 +6,7 @@ import Subway from "./components/Subway"
 import Home from "./components/Home"
 import { logAtom } from "./atoms/IsLogin"
 import { useAtom } from "jotai"
+import TodoList from "./components/TodoList"
 
 function App() {
   const [login] = useAtom(logAtom);
@@ -21,8 +22,9 @@ function App() {
         <main id="maincolor" className="flex-1 w-full flex flex-col items-center justify-start px-4 py-6">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
+            {!login && <Route path="/login" element={<Login />} />}
             {login && <Route path="/subway" element={<Subway />} />}
+            {login && <Route path="/todoList" element={<TodoList />} />}
           </Routes>
         </main>
 

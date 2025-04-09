@@ -16,8 +16,7 @@ export default function TodoForm({addTodo}) {
         const content = contentref.current.value;
         const sel = refsel.current.value;
         contentref.current.value = "";
-        console.log("content", content);
-        console.log("sel", sel);
+
         addTodo(content, sel);
     }
     const handleRemove = () => {

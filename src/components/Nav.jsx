@@ -8,7 +8,7 @@ import { logAtom } from "../atoms/IsLogin";
 
 
 export default function Nav() {
-  //전연변수로 로그인 상태 관리
+  //전역변수로 로그인 상태 관리
   const [login, setLogin] = useAtom(logAtom);
 
   //로그아웃 함수

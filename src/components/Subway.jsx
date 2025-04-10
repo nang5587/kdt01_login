@@ -67,8 +67,9 @@ export default function Subway() {
         const data2 = data.filter(item => item.areaIndex === selectedCode);
         console.log("data2",data2);
         const tm = data2.map(item => 
-            <tr className="bg-white border-b border-gray-200
-                           hover:bg-gray-50 hover:cursor-pointer hover:font-bold" >
+            <tr key={item}
+            className="bg-white border-b border-gray-200
+                    hover:bg-gray-50 hover:cursor-pointer hover:font-bold" >
 
               <td className="px-6 p-4 text-center">
               {item["pm10"]}

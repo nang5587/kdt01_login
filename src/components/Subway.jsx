@@ -6,22 +6,32 @@ import { logAtom } from "../atoms/IsLogin"
 import scode from "../db/scode.json"
 import sarea from "../db/sarea.json"
 export default function Subway() {
+  //전역변수로 로그인 관리
   const [login] = useAtom(logAtom);
+
+  //useNavigate 변수 선언
   const navigate = useNavigate();
 
+  //로그인 시 홈으로 이동
   useEffect(() => {
     if (!login) {
       navigate("/");
     }
   }, [login, navigate]);
 
+  //useState 변수 선언
   const [tags, setTags] = useState([]);
   const [tags1, setTags1] = useState([]);
   const [data, setData] = useState([]);
   const [code, setCode] = useState();
+
+  //useRef 변수 선언
   const refSel = useRef();
 
+  //측정소 리스트 만들기
   const selList = sarea.map(item => item["측정소"]);
+
+  //어제 날짜 구하는 함수
   const getYesterday = () => {
     let dt = new Date();
     dt.setDate(dt.getDate() - 1);
@@ -39,6 +49,7 @@ export default function Subway() {
     return (year +  month + day);
   }
 
+  //API 데이터 가져오는 함수
   const getFetchData = async () => {
       const apiKey = import.meta.env.VITE_APP_API_KEY;
 
@@ -51,17 +62,20 @@ export default function Subway() {
       setData(subwayData);
   }
 
+  //측정소 선택 시 테이블 뿌리게 하는 함수
   const handleChange = () => {
       const selected = refSel.current.value;
 
+      //측정소와 코드가 함께 있는 배열을 만들고, 선택한 측정소에 해당하는 코드를 찾음
       const codes = sarea.map(item => `${item["측정소"]},${item["코드"]}`);
       const test = codes.find(item => item.split(',')[0] === selected) || "";
       const selectedCode = test.split(',')[1] || "";
     
       setCode(selectedCode);
-    
+
+      //측정소 코드에 해당하는 데이터를 필터링하여 새로운 배열 생성
       const data2 = data.filter(item => item.areaIndex === selectedCode);
-      console.log("data2",data2);
+      
       const tm = data2.map(item => 
           <tr key={item}
           className="bg-white border-b border-gray-200
@@ -98,11 +112,13 @@ export default function Subway() {
       setTags(tm);
   }
 
+  //화면 랜더링 시 데이터를 가져오고 로그인 상태를 확인하여 새로고침 시에도 로그인 유지
   useEffect(()=>{
       getFetchData();
       if (localStorage.getItem("email") != "") setLogin(true) ;
-  }, []);
-
+    }, []);
+  
+  //테이블의 헤더를 만들기 위함
   useEffect(()=>{
     if(!data) return;
     const itemKeys = Object.keys(scode);

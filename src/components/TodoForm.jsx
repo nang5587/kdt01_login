@@ -11,8 +11,7 @@ export default function TodoForm({addTodo}) {
   const sel = ["X", "O"];
 
   //"확인" 버튼 클릭 시 완료 여부와 내용을 가져와서 addTodo 함수에 전달함
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     //내용이 비었을 경우 처리
     if(contentref.current.value == ""){
         alert("내용을 입력해주세요.");
@@ -33,6 +32,13 @@ export default function TodoForm({addTodo}) {
     e.preventDefault();
     refsel.current.value = "X";
     contentref.current.value = "";
+  }
+
+  //엔터키 눌렀을 때 확인버튼 함수 호출
+  const handleKeyDown = (e) => {
+    if(e.key === "Enter"){
+      handleClick();
+    }
   }
 
   //랜더링 시 완료 여부를 X로 초기화
@@ -60,6 +66,7 @@ export default function TodoForm({addTodo}) {
             id="content"
             name="content"
             type="text"
+            onKeyDown={handleKeyDown}
             required
             className="block w-2/5 rounded-md bg-white px-3 py-1.5 text-base text-gray-900 
             outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 

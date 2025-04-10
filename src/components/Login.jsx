@@ -48,7 +48,7 @@ export default function Login() {
 
         <div className=" w-1/2 h-auto flex justify-center items-center">
           <form className="w-1/2 space-y-6 bg-white border-1 border-gray-200 shadow-md shadow-gray-300 rounded-2xl px-10 pt-10 pb-20 animate-fade-up" 
-                onSubmit={handleSubmit}>
+              >
             <h2 className="text-2xl font-bold text-center mb-15 text-gray-700">Login</h2>
             
             {/* 이메일 input */}

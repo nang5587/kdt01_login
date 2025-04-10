@@ -10,7 +10,7 @@ export default function Home() {
 
   //새로고침 시 로그인 상태 유지
   useEffect(()=>{
-    if (localStorage.getItem("email")) setLogin(true) ;
+    if (localStorage.getItem("email") != "") setLogin(true) ;
   }, []);
 
   return (

@@ -5,11 +5,17 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useAtom } from "jotai";
 import { logAtom } from "../atoms/IsLogin";
+import { useEffect } from "react";
 
 
 export default function Nav() {
   //전역변수로 로그인 상태 관리
   const [login, setLogin] = useAtom(logAtom);
+
+  //새로고침 시 로그인 상태 유지
+  useEffect(()=>{
+    if (localStorage.getItem("email") != "") setLogin(true) ;
+  }, []);
 
   //로그아웃 함수
   const handlelogout = () => {

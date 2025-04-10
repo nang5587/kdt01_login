@@ -6,118 +6,115 @@ import { logAtom } from "../atoms/IsLogin"
 import scode from "../db/scode.json"
 import sarea from "../db/sarea.json"
 export default function Subway() {
-    const [login] = useAtom(logAtom);
-    const navigate = useNavigate();
+  const [login] = useAtom(logAtom);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-      if (!login) {
-        navigate("/");
-      }
-    }, [login, navigate]);
-
-    const [tags, setTags] = useState([]);
-    const [tags1, setTags1] = useState([]);
-    const [data, setData] = useState([]);
-    const [code, setCode] = useState();
-    const refSel = useRef();
-
-    const selList = sarea.map(
-        item => item["측정소"]
-      );
-      const getYesterday = () => {
-        let dt = new Date();
-        dt.setDate(dt.getDate() - 1);
-    
-        //년도
-        let year = String(dt.getFullYear());
-        year = year.slice(2);
-        //월
-        let month = String(dt.getMonth() + 1).padStart(2, '0');
-        // month = month < 10 ? '0' + month : month ;
-    
-        //일 
-        let day = String(dt.getDate()).padStart(2, '0');
-        
-        return (year +  month + day);
-      }
-     
-
-
-    const getFetchData = async () => {
-        const apiKey = import.meta.env.VITE_APP_API_KEY;
-
-        let url = "https://apis.data.go.kr/6260000/IndoorAirQuality/getIndoorAirQualityByStation?serviceKey=";
-        url = `${url}${apiKey}&pageNo=1&numOfRows=104&resultType=json&controlnumber=${getYesterday()}10`
-        const resp = await fetch(url);
-        const data = await resp.json();
-      
-        let subwayData = data.response.body.items.item;
-        setData(subwayData);
+  useEffect(() => {
+    if (!login) {
+      navigate("/");
     }
+  }, [login, navigate]);
 
-    const handleChange = () => {
-        const selected = refSel.current.value;
+  const [tags, setTags] = useState([]);
+  const [tags1, setTags1] = useState([]);
+  const [data, setData] = useState([]);
+  const [code, setCode] = useState();
+  const refSel = useRef();
 
-        const codes = sarea.map(item => `${item["측정소"]},${item["코드"]}`);
-        const test = codes.find(item => item.split(',')[0] === selected) || "";
-        const selectedCode = test.split(',')[1] || "";
-      
-        setCode(selectedCode);
-      
-        const data2 = data.filter(item => item.areaIndex === selectedCode);
-        console.log("data2",data2);
-        const tm = data2.map(item => 
-            <tr key={item}
-            className="bg-white border-b border-gray-200
-                    hover:bg-gray-50 hover:cursor-pointer hover:font-bold" >
+  const selList = sarea.map(item => item["측정소"]);
+  const getYesterday = () => {
+    let dt = new Date();
+    dt.setDate(dt.getDate() - 1);
 
-              <td className="px-6 p-4 text-center">
-              {item["pm10"]}
-              </td>
-              <td className=" px-6 py-4 text-center ">
-              {item["co2"]}
-              </td>
-              <td className=" px-6 py-4 text-center">
-              {item["co"]}
-              </td>
-              <td className=" px-6 py-4 text-center">
-              {item["no2"]}
-              </td>
-              <td className=" px-6 py-4 text-center">
-              {item["no"]}
-              </td>
-              <td className=" px-6 py-4 text-center">
-              {item["nox"]}
-              </td>
-              <td className=" px-6 py-4 text-center">
-              {item["o3"]}
-              </td>
-              <td className=" px-6 py-4 text-center">
-              {item["pm25"]}
-              </td>
-              <td className=" px-6 py-4 text-center">
-              {item["fad"]}
-              </td>
-              </tr>);
-        setTags(tm);
-    }
+    //년도
+    let year = String(dt.getFullYear());
+    year = year.slice(2);
+    //월
+    let month = String(dt.getMonth() + 1).padStart(2, '0');
+    // month = month < 10 ? '0' + month : month ;
 
-    useEffect(()=>{
-        getFetchData();
-    }, []);
+    //일 
+    let day = String(dt.getDate()).padStart(2, '0');
+    
+    return (year +  month + day);
+  }
 
-    useEffect(()=>{
-      if(!data) return;
-      const itemKeys = Object.keys(scode);
+  const getFetchData = async () => {
+      const apiKey = import.meta.env.VITE_APP_API_KEY;
 
-      let tm = itemKeys.map(item => 
-            <th key={item} className="font-bold px-6 py-3 text-center w-1/9">
-            {scode[item]["name"]}<br/>({scode[item]["unit"]})
-            </th>
-      )
-      setTags1(tm)
-      handleChange();
-    }, [data]);
+      let url = "https://apis.data.go.kr/6260000/IndoorAirQuality/getIndoorAirQualityByStation?serviceKey=";
+      url = `${url}${apiKey}&pageNo=1&numOfRows=104&resultType=json&controlnumber=${getYesterday()}10`
+      const resp = await fetch(url);
+      const data = await resp.json();
+    
+      let subwayData = data.response.body.items.item;
+      setData(subwayData);
+  }
+
+  const handleChange = () => {
+      const selected = refSel.current.value;
+
+      const codes = sarea.map(item => `${item["측정소"]},${item["코드"]}`);
+      const test = codes.find(item => item.split(',')[0] === selected) || "";
+      const selectedCode = test.split(',')[1] || "";
+    
+      setCode(selectedCode);
+    
+      const data2 = data.filter(item => item.areaIndex === selectedCode);
+      console.log("data2",data2);
+      const tm = data2.map(item => 
+          <tr key={item}
+          className="bg-white border-b border-gray-200
+                  hover:bg-gray-50 hover:cursor-pointer hover:font-bold" >
+
+            <td className="px-6 p-4 text-center">
+            {item["pm10"]}
+            </td>
+            <td className=" px-6 py-4 text-center ">
+            {item["co2"]}
+            </td>
+            <td className=" px-6 py-4 text-center">
+            {item["co"]}
+            </td>
+            <td className=" px-6 py-4 text-center">
+            {item["no2"]}
+            </td>
+            <td className=" px-6 py-4 text-center">
+            {item["no"]}
+            </td>
+            <td className=" px-6 py-4 text-center">
+            {item["nox"]}
+            </td>
+            <td className=" px-6 py-4 text-center">
+            {item["o3"]}
+            </td>
+            <td className=" px-6 py-4 text-center">
+            {item["pm25"]}
+            </td>
+            <td className=" px-6 py-4 text-center">
+            {item["fad"]}
+            </td>
+            </tr>);
+      setTags(tm);
+  }
+
+  useEffect(()=>{
+      getFetchData();
+      if (localStorage.getItem("email") != "") setLogin(true) ;
+  }, []);
+
+  useEffect(()=>{
+    if(!data) return;
+    const itemKeys = Object.keys(scode);
+
+    let tm = itemKeys.map(item => 
+          <th key={item} className="font-bold px-6 py-3 text-center w-1/9">
+          {scode[item]["name"]}<br/>({scode[item]["unit"]})
+          </th>
+    )
+    setTags1(tm)
+    handleChange();
+  }, [data]);
 
   return (
     <div className="w-9/10">

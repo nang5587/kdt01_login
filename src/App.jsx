@@ -22,9 +22,9 @@ function App() {
         <main id="maincolor" className="flex-1 w-full flex flex-col items-center justify-start px-4 py-6">
           <Routes>
             <Route path="/" element={<Home />} />
-            {!login && <Route path="/login" element={<Login />} />}
-            {login && <Route path="/subway" element={<Subway />} />}
-            {login && <Route path="/todoList" element={<TodoList />} />}
+            <Route path="/login" element={<Login />} />
+            <Route path="/subway" element={<Subway />} />
+            <Route path="/todoList" element={<TodoList />} />
           </Routes>
         </main>
 

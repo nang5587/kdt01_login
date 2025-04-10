@@ -29,10 +29,10 @@ export default function TodoForm({addTodo}) {
     },[]);
 
   return (
-    <div className="w-11/12 flex flex-col justify-center items-center bg-gray-50 rounded-2xl py-10 shadow-md shadow-gray-300 border-1 border-gray-200">
-      <h2 className="text-2xl text-gray-700 text-center mb-10 font-bold">Todo List</h2>
+    <div className="w-11/12 flex flex-col justify-center items-center py-5 ">
+      <h2 className="text-2xl text-gray-700 text-center mb-10 font-bold">TODO LIST</h2>
       <div className="w-1/2 flex justify-center items-center">
-        <div className="w-1/5 mr-10">
+        <div id="kakaoNomal" className="w-1/5 mr-10">
         <TailSelect
         id = "todoSelect"
         refSel = {refsel}
@@ -50,14 +50,14 @@ export default function TodoForm({addTodo}) {
             outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 
             focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 focus:bg-white mr-10"/>
 
-        <div className="mr-10 w-1/5">    
+        <div id="kakaoNomal" className="mr-10 w-1/5">    
         <TailButton 
         caption="확인"
         color="lblue"
         onClick={handleClick}
         />
         </div>
-        <div className="w-1/5">
+        <div id="kakaoNomal" className="w-1/5">
         <TailButton 
         caption="취소"
         color="lblue"

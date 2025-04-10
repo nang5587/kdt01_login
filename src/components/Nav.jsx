@@ -2,7 +2,6 @@ import "./font.css"
 import { FiUser } from "react-icons/fi";
 import { RiLoginCircleLine } from "react-icons/ri";
 import { RiLogoutCircleLine } from "react-icons/ri";
-import { LiaSubwaySolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 import { useAtom } from "jotai";
 import { logAtom } from "../atoms/IsLogin";
@@ -28,7 +27,7 @@ export default function Nav() {
             <Link to="/subway" id="navcenter"
               className="inline-flex items-center justify-center text-xl text-gray-700
                 mr-5 px-5 py-1 w-36 text-center hover:underline underline-offset-4">
-              <LiaSubwaySolid className="w-8"/>지하철
+              SUBWAY
             </Link>}
             
             {/* 로그인 시 todoList 제공 */}
@@ -36,7 +35,7 @@ export default function Nav() {
             <Link to="/todoList" id="navcenter"
               className="inline-flex items-center justify-center text-xl text-gray-700
                 mr-5 px-5 py-1 w-36 text-center hover:underline underline-offset-4">
-              TodoList
+              TODOLIST
             </Link>}
           </div>
 

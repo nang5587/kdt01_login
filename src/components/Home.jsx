@@ -19,7 +19,7 @@ export default function Home() {
       <div className="flex flex-col justify-center items-center">
         <div className="bg-white border-1 border-gray-100 shadow-md shadow-gray-300 rounded-2xl w-[350px] h-[150px] flex items-center justify-center text-center
                         hover:shadow-xl transition-shadow duration-300 ease-in-out mt-10 animate-fade-up">
-          <h2 className="text-xl text-gray-700 leading-relaxed font-bold">
+          <h2 id="kakaoNomal" className="text-xl text-gray-700 leading-relaxed font-bold">
             안녕하세요, <br />
             <span className="text-blue-500">
               {localStorage.getItem('logEmail')}

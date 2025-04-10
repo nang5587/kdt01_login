@@ -37,6 +37,17 @@
   animation: marquee 30s linear infinite;
 }
 
+@font-face {
+  font-family: 'KakaoSmallSanslight';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoSmallSans-Bold.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+
+#kakaoNomal {
+  font-family: 'KakaoSmallSanslight';
+}
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;

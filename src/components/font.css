@@ -35,6 +35,9 @@
 #navcenter{
     font-family: 'KakaoSmallSans-Bold';
 }
+#kakaoMid{
+    font-family: 'KakaoSmallSans';
+}
 #rotated{
     transform: rotate(-6deg);
 }

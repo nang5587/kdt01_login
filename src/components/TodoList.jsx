@@ -3,13 +3,12 @@ import axios from "axios"
 import TodoForm from "./TodoForm"
 import TodoItem from "./TodoItem"
 
-    const baseurl = "http://localhost:3005/todos"
+const baseurl = "http://localhost:3005/todos"
 export default function TodoList() {
     const [todos, setTodos] = useState([]);
 
     const getData = async () => {
         const data = await axios.get(baseurl);
-        console.log(data.data);
         let tm = data.data.map(item => 
             <TodoItem key={item.id} id={item.id} text={item.text} completed={item.completed} handleDelete={handleDelete} handleToggle={handleToggle}/>
         );

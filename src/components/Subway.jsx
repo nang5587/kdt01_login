@@ -53,8 +53,6 @@ export default function Subway() {
       
         let subwayData = data.response.body.items.item;
         setData(subwayData);
-        console.log(url);
-        console.log("subwayData", subwayData);
     }
 
     const handleChange = () => {
@@ -69,8 +67,8 @@ export default function Subway() {
         const data2 = data.filter(item => item.areaIndex === selectedCode);
         console.log("data2",data2);
         const tm = data2.map(item => 
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200
-                           hover:bg-gray-50 dark:hover:bg-gray-600 hover:cursor-pointer hover:font-bold" >
+            <tr className="bg-white border-b border-gray-200
+                           hover:bg-gray-50 hover:cursor-pointer hover:font-bold" >
 
               <td className="px-6 p-4 text-center">
               {item["pm10"]}
@@ -123,9 +121,9 @@ export default function Subway() {
   return (
     <div className="w-9/10">
         <div className="w-full flex justify-between items-center">
-            <h2 className="text-lg text-gray-700 font-bold my-10 px-5 py-2 rounded-lg bg-white
+            <h2 id="kakaoMid" className="text-lg text-gray-700 font-bold my-10 px-5 py-2 rounded-lg bg-white
                           border-1 border-gray-100 shadow-md shadow-gray-300">측정소 선택</h2>
-            <div className="w-1/3"><TailSelect 
+            <div id="kakaoNomal" className="w-1/3"><TailSelect 
                 id="sel"
                 refSel={refSel}
                 items={selList}
@@ -133,7 +131,7 @@ export default function Subway() {
             />
             </div>
         </div>
-        <table className="w-full text-sm text-left rtl:text-right text-gray-700">
+        <table id="kakaoNomal" className="w-full text-sm text-left rtl:text-right text-gray-700">
         <thead className="text-sm text-gray-700 uppercase bg-gray-100 dark:bg-gray-700">
           <tr>
             {tags1}

@@ -7,7 +7,7 @@ import scode from "../db/scode.json"
 import sarea from "../db/sarea.json"
 export default function Subway() {
   //전역변수로 로그인 관리
-  const [login] = useAtom(logAtom);
+  const [login, setLogin] = useAtom(logAtom);
 
   //useNavigate 변수 선언
   const navigate = useNavigate();

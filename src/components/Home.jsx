@@ -10,8 +10,8 @@ export default function Home() {
 
   //새로고침 시 로그인 상태 유지
   useEffect(()=>{
-    if (localStorage.getItem("email") != "") setLogin(true) ;
-  }, []);
+    if (localStorage.getItem("email")) setLogin(true)
+    }, []);
 
   return (
   <div className="w-full flex justify-end items-center">
@@ -38,6 +38,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       ) : (
         //로그인 안 했을 때는 로그인 화면
         <Login />

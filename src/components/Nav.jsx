@@ -14,7 +14,11 @@ export default function Nav() {
 
   //새로고침 시 로그인 상태 유지
   useEffect(()=>{
-    if (localStorage.getItem("email") != "") setLogin(true) ;
+    if (localStorage.getItem("email") != "") {
+      setLogin(true);
+      return;
+    }
+    setLogin(false);
   }, []);
 
   //로그아웃 함수

@@ -12,6 +12,7 @@ export default function TodoList() {
     // Todoitem들을 가져오는 함수
     const getData = async () => {
         const data = await axios.get(baseurl);
+        console.log(data.data)
         setTdata(data.data);
     }
 

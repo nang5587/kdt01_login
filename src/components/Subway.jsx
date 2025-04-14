@@ -122,10 +122,10 @@ export default function Subway() {
   useEffect(()=>{
     if(!data) return;
     const itemKeys = Object.keys(scode);
-
+    console.log("itemkey",itemKeys)
     let tm = itemKeys.map(item => 
           <th key={item} className="font-bold px-6 py-3 text-center w-1/9">
-          {scode[item]["name"]}<br/>({scode[item]["unit"]})
+          {scode[item]["name"]}<br/>({item})
           </th>
     )
     setTags1(tm)

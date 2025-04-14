@@ -4,13 +4,9 @@ import Login from "./components/Login"
 import Nav from "./components/Nav"
 import Subway from "./components/Subway"
 import Home from "./components/Home"
-import { logAtom } from "./atoms/IsLogin"
-import { useAtom } from "jotai"
 import TodoList from "./components/TodoList"
 
 function App() {
-  //전역변수로 로그인 관리
-  const [login] = useAtom(logAtom);
 
   return (
     <BrowserRouter>
